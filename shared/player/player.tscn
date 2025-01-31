@@ -1,0 +1,147 @@
+[gd_scene load_steps=8 format=3 uid="uid://4du6ntb5ot7p"]
+
+[ext_resource type="Script" path="res://shared/player/camera_2d.gd" id="1_1rnse"]
+[ext_resource type="Script" path="res://shared/player/rich_text_label.gd" id="1_jus6m"]
+[ext_resource type="SpriteFrames" uid="uid://bfno0axgwsj51" path="res://shared/player/new_sprite_frames.tres" id="3_4ter3"]
+
+[sub_resource type="GDScript" id="GDScript_widg3"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 600.0
+const JUMP_VELOCITY = -500.0
+var jumps = 0
+const max_jumps =3
+const MAX_SPEED = 800.0
+const SPEED_LIMIT = 2000.0
+var ground = false
+var ground_time = 0.0
+var just_attacked = false
+var health = 5
+
+func hurt(damage):
+	health += -damage
+	if health < 1:
+		get_tree().change_scene_to_file(\"res://initalcutscene.tscn\")
+
+
+func _ready():
+	var weapon = preload(\"res://shared/weapons/carrot_sword/carrot_sword.tscn\").instantiate()
+	weapon.name = \"weapon\"
+	add_child(weapon)
+	
+func _physics_process(delta):
+	var x = true
+#	print(velocity)
+	
+	# Add the gravity.
+	ground = is_on_floor()
+	if ground_time < 0.125 and ground:
+		$AnimatedSprite2D.animation = \"charged\"
+	else: 
+		$AnimatedSprite2D.animation = \"default\"
+	if ground:
+		jumps = max_jumps
+		ground_time += delta
+		#if ground_time < 250 and Input.is_action_just_pressed(\"ui_up\"):
+		#	x = false
+		#	velocity.y = -velocity.y* 1.5
+	if not ground:
+		ground_time = 0
+		jumps += 0.5 * delta
+		velocity += get_gravity() * delta * 1.75
+		velocity.y = minf(2250, velocity.y)
+		#print(str(abs(velocity.y) * delta * sign(velocity.x) * 10)+\" \"+str(velocity.x))
+		velocity.x += abs(velocity.y) * delta * sign(velocity.x) * 10
+		
+	# Handle jump.dad
+	if Input.is_action_just_pressed(\"ui_up\") and jumps >= 1:
+		if ground_time < 0.125 and ground:
+			velocity.y = -velocity.y + JUMP_VELOCITY * 2.5
+		#if velocity.y  > 0:
+		#	print(velocity.y)
+		#	velocity.y = -minf(velocity.y,5)
+		#	print(velocity.y)
+		velocity.y += JUMP_VELOCITY + (-1 * abs(velocity.x/5))
+		jumps += -1
+		velocity.x += velocity.x/1.5
+	if Input.is_action_just_pressed(\"ui_down\"):
+		velocity.x = velocity.x * 0.25
+		velocity.y = velocity.y * 0.125
+	if Input.is_action_just_pressed(\"attack\"):
+		print(\"attacked\")
+		print(str($\"weapon\"))
+		$\"weapon\".attack()
+		
+		
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = move_toward(abs(velocity.x), MAX_SPEED , SPEED * delta) *direction
+	
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, abs(velocity.x * delta * 1))
+	else: 
+		velocity.x = move_toward(velocity.x, 0, abs(velocity.x * 0.75 * delta))
+	velocity.x = clampf(velocity.x,-SPEED_LIMIT,SPEED_LIMIT)
+
+	move_and_slide()
+	var redo = false
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body := collision.get_collider()
+		if body.name.to_lower().contains(\"enemy\"):
+			
+			print(body.name)
+			if not just_attacked:
+				hurt(body.damage)
+				print(\"triggered\")
+				print(str(sign(position.x - body.position.x)))
+			velocity.x = 1000 * sign(position.x - body.position.x)
+			velocity.y = -250
+			redo = true
+			just_attacked = true
+			break
+	if not redo:
+		just_attacked = false
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yi2m"]
+size = Vector2(330, 540)
+
+[sub_resource type="SystemFont" id="SystemFont_sl80k"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_fici8"]
+default_font = SubResource("SystemFont_sl80k")
+default_font_size = 200
+
+[node name="player" type="CharacterBody2D"]
+z_index = 1
+platform_floor_layers = 2684354509
+script = SubResource("GDScript_widg3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-69, 120)
+shape = SubResource("RectangleShape2D_2yi2m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -300)
+zoom = Vector2(0.25, 0.25)
+script = ExtResource("1_1rnse")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D"]
+offset_left = 1129.0
+offset_top = 707.0
+offset_right = 2317.0
+offset_bottom = 1017.0
+theme = SubResource("Theme_fici8")
+text = "asdfa"
+script = ExtResource("1_jus6m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.00002, 14)
+scale = Vector2(8.38, 7.52)
+sprite_frames = ExtResource("3_4ter3")

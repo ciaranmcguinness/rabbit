@@ -1,0 +1,31 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://clxe76ybciuks"]
+
+[ext_resource type="Texture2D" uid="uid://cgaaonxin0vw5" path="res://levels/level1/scarecrow/scarecrow_idle.png" id="1_hng1k"]
+[ext_resource type="Texture2D" uid="uid://ct4uqwxv41fn8" path="res://levels/level1/scarecrow/scarecrow_hurt_1.png" id="2_bsqyj"]
+[ext_resource type="Texture2D" uid="uid://drjdso2qh0th6" path="res://levels/level1/scarecrow/scarecrow_hurt_2.png" id="3_n8a1q"]
+[ext_resource type="Texture2D" uid="uid://cwh1gp6knuk88" path="res://levels/level1/scarecrow/scarecrow_hurt_3.png" id="4_05oit"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hng1k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bsqyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n8a1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_05oit")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 20.0
+}]

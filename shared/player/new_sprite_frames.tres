@@ -1,0 +1,28 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bfno0axgwsj51"]
+
+[ext_resource type="Texture2D" uid="uid://bd2q6xb5huw24" path="res://shared/player/icon.svg" id="1_e25j8"]
+[ext_resource type="Texture2D" uid="uid://cxkumhmpuyfdg" path="res://shared/player/Rabbit_boy_against_the_universe_cover_art.png" id="2_4j205"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e25j8")
+}],
+"loop": true,
+"name": &"charged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4j205")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]

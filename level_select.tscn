@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnysu3b1t82vu"]
+
+[sub_resource type="GDScript" id="GDScript_gpmu8"]
+script/source = "extends Control
+
+func level1_button():
+	get_tree().change_scene_to_file(\"res://levels/level1/level1.tscn\")
+
+
+func level2_button():
+	get_tree().change_scene_to_file(\"res://levels/level2/level2.tscn\")
+"
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_gpmu8")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 33.0
+offset_right = 198.0
+offset_bottom = 64.0
+text = "1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 25.0
+offset_right = 286.0
+offset_bottom = 56.0
+text = "2"
+
+[connection signal="button_down" from="Button" to="." method="level1_button"]
+[connection signal="button_down" from="Button2" to="." method="level2_button"]

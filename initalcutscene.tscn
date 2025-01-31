@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://1dayfqq3myff"]
+
+[ext_resource type="Script" path="res://initalcutscene.gd" id="1_otuex"]
+[ext_resource type="Texture2D" uid="uid://cxkumhmpuyfdg" path="res://shared/player/Rabbit_boy_against_the_universe_cover_art.png" id="2_meqyg"]
+
+[sub_resource type="Theme" id="Theme_42j51"]
+default_font_size = 50
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_otuex")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 379.0
+offset_right = 708.0
+offset_bottom = 456.0
+text = "Repent!"
+icon = ExtResource("2_meqyg")
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 239.0
+offset_right = 1039.0
+offset_bottom = 300.0
+theme = SubResource("Theme_42j51")
+text = "                 RabbitBoy:
+He knows what you did to that
+                family in 2007."
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

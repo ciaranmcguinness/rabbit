@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7wej0en5cnq2"]
+
+[ext_resource type="Texture2D" uid="uid://dxoa11lxlplhi" path="res://levels/level1/Intel-Xeon-Platinum.jpg" id="1_r8ky3"]
+[ext_resource type="PackedScene" uid="uid://4du6ntb5ot7p" path="res://shared/player/player.tscn" id="3_f2wtg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbalm"]
+size = Vector2(20000, 50)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aq5a8"]
+size = Vector2(20000, 50)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_as_relative = false
+position = Vector2(1314, 497)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-24, 357)
+shape = SubResource("RectangleShape2D_jbalm")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-24, 357)
+texture = SubResource("PlaceholderTexture2D_aq5a8")
+
+[node name="Intel-xeon-platinum" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(7990.5, -1248)
+scale = Vector2(6.67767, 1.37567)
+texture = ExtResource("1_r8ky3")
+
+[node name="Player" parent="." instance=ExtResource("3_f2wtg")]

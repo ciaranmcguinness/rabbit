@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs75cu8p1osxn"]
+
+[ext_resource type="Script" path="res://shared/weapons/carrot_sword/carrot_sword.gd" id="1_8peup"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5o7dt"]
+size = Vector2(350, 50)
+
+[sub_resource type="Gradient" id="Gradient_2ktwj"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_moc3t"]
+gradient = SubResource("Gradient_2ktwj")
+width = 50
+
+[node name="CarrotSword" type="Node2D"]
+z_index = -1
+position = Vector2(250, 0)
+script = ExtResource("1_8peup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(118, -109)
+rotation = -0.698132
+texture = SubResource("PlaceholderTexture2D_5o7dt")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(3, 17)
+polygon = PackedVector2Array(-266, -22, 223, -683, 309, -100, 275, 882)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+visible = false
+position = Vector2(230, -28)
+scale = Vector2(2.21999, 880.347)
+texture = SubResource("GradientTexture1D_moc3t")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
