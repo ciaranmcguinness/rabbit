@@ -28,7 +28,7 @@ func hurt(damage):
 func _ready():
 	var weapon = preload(\"res://shared/weapons/carrot_sword/carrot_sword.tscn\").instantiate()
 	weapon.name = \"weapon\"
-	add_child(weapon)
+	$shmoov.add_child(weapon)
 	
 func _physics_process(delta):
 	var x = true
@@ -37,9 +37,9 @@ func _physics_process(delta):
 	# Add the gravity.
 	ground = is_on_floor()
 	if ground_time < 0.125 and ground:
-		$AnimatedSprite2D.animation = \"charged\"
+		$shmoov/AnimatedSprite2D.animation = \"charged\"
 	else: 
-		$AnimatedSprite2D.animation = \"default\"
+		$shmoov/AnimatedSprite2D.animation = \"default\"
 	if ground:
 		jumps = max_jumps
 		ground_time += delta
@@ -70,15 +70,16 @@ func _physics_process(delta):
 		velocity.y = velocity.y * 0.125
 	if Input.is_action_just_pressed(\"attack\"):
 		print(\"attacked\")
-		print(str($\"weapon\"))
-		$\"weapon\".attack()
+		print(str($\"shmoov/weapon\"))
+		$\"shmoov/weapon\".attack()
 		
 		
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
+	if direction: 
+		$shmoov.scale.x = direction
 		velocity.x = move_toward(abs(velocity.x), MAX_SPEED , SPEED * delta) *direction
 	
 	if is_on_floor():
@@ -141,7 +142,9 @@ theme = SubResource("Theme_fici8")
 text = "asdfa"
 script = ExtResource("1_jus6m")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="shmoov" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="shmoov"]
 position = Vector2(2.00002, 14)
 scale = Vector2(8.38, 7.52)
 sprite_frames = ExtResource("3_4ter3")

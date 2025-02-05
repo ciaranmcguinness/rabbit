@@ -1,56 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpfu8o00dgkj3"]
+[gd_scene load_steps=6 format=4 uid="uid://bpfu8o00dgkj3"]
 
 [ext_resource type="Texture2D" uid="uid://dxoa11lxlplhi" path="res://levels/level1/Intel-Xeon-Platinum.jpg" id="1_2hjpr"]
 [ext_resource type="PackedScene" uid="uid://cuin44v37wcgp" path="res://shared/enemies_and_misc/squirb/enemy_squirb.tscn" id="2_2vu7x"]
 [ext_resource type="PackedScene" uid="uid://4du6ntb5ot7p" path="res://shared/player/player.tscn" id="3_ou0mw"]
 [ext_resource type="PackedScene" uid="uid://df8x2f0allx2q" path="res://levels/level1/scarecrow/enemy_scarecrow.tscn" id="4_c2yek"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbalm"]
-size = Vector2(20000, 50)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aq5a8"]
-size = Vector2(20000, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhc0a"]
-size = Vector2(1000, 1000)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x25fd"]
-size = Vector2(1000, 1000)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p5gf"]
-size = Vector2(1000, 250)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0bokf"]
-size = Vector2(1000, 250)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksh2k"]
-size = Vector2(10000, 250)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6w8e4"]
-size = Vector2(10000, 250)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nws1"]
-size = Vector2(150, 1000)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fcmey"]
-size = Vector2(150, 1000)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p41we"]
-size = Vector2(500, 500)
+[ext_resource type="TileSet" uid="uid://e703rclvq04i" path="res://shared/tiles/world_1.tres" id="5_l4s0f"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-z_as_relative = false
-position = Vector2(1314, 497)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-24, 357)
-shape = SubResource("RectangleShape2D_jbalm")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-24, 357)
-texture = SubResource("PlaceholderTexture2D_aq5a8")
 
 [node name="Intel-xeon-platinum" type="Sprite2D" parent="."]
 z_index = -1
@@ -58,100 +14,18 @@ position = Vector2(7990.5, -1248)
 scale = Vector2(6.67767, 1.37567)
 texture = ExtResource("1_2hjpr")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(2757.42, 332.674)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("RectangleShape2D_jhc0a")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-texture = SubResource("PlaceholderTexture2D_x25fd")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(15188, -265)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource("RectangleShape2D_5p5gf")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
-texture = SubResource("PlaceholderTexture2D_0bokf")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(16591, -767)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-shape = SubResource("RectangleShape2D_5p5gf")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
-texture = SubResource("PlaceholderTexture2D_0bokf")
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(15094, -1904)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-shape = SubResource("RectangleShape2D_5p5gf")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
-texture = SubResource("PlaceholderTexture2D_0bokf")
-
-[node name="StaticBody2D6" type="StaticBody2D" parent="."]
-position = Vector2(22401, -2665)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
-shape = SubResource("RectangleShape2D_ksh2k")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D6"]
-texture = SubResource("PlaceholderTexture2D_6w8e4")
-
-[node name="EnemySquirb" parent="StaticBody2D6/Sprite2D" instance=ExtResource("2_2vu7x")]
-position = Vector2(4262, -550)
+[node name="EnemySquirb2" parent="." instance=ExtResource("2_2vu7x")]
+position = Vector2(26663, -3215)
 
 [node name="Player" parent="." instance=ExtResource("3_ou0mw")]
 
 [node name="EnemyScarecrow" parent="." instance=ExtResource("4_c2yek")]
-position = Vector2(19641, -3038)
+position = Vector2(19713, -2918)
 
 [node name="EnemySquirb" parent="." instance=ExtResource("2_2vu7x")]
 position = Vector2(25388, -3093)
 
-[node name="StaticBody2D8" type="StaticBody2D" parent="."]
-position = Vector2(27245, -3312)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
-shape = SubResource("RectangleShape2D_8nws1")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D8"]
-texture = SubResource("PlaceholderTexture2D_fcmey")
-
-[node name="StaticBody2D7" type="StaticBody2D" parent="."]
-position = Vector2(22023, -3248)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
-shape = SubResource("RectangleShape2D_8nws1")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D7"]
-texture = SubResource("PlaceholderTexture2D_fcmey")
-
-[node name="StaticBody2D9" type="StaticBody2D" parent="."]
-position = Vector2(27339, -2222)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
-shape = SubResource("RectangleShape2D_8nws1")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D9"]
-texture = SubResource("PlaceholderTexture2D_fcmey")
-
-[node name="StaticBody2D10" type="StaticBody2D" parent="."]
-position = Vector2(28069, -2270)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D10"]
-shape = SubResource("RectangleShape2D_8nws1")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D10"]
-texture = SubResource("PlaceholderTexture2D_fcmey")
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(27684, -1499)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_p41we")
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(9, 9)
+tile_map_data = PackedByteArray("AAD4/wMAAAABAAAAAAD5/wMAAAACAAAAAAD6/wMAAAACAAAAAAD7/wMAAAACAAAAAAD8/wMAAAACAAAAAAD9/wMAAAACAAAAAAD+/wMAAAACAAAAAAD//wMAAAACAAAAAAAAAAMAAAACAAAAAAABAAMAAAACAAAAAAACAAMAAAACAAAAAAADAAMAAAACAAAAAAAEAAMAAAACAAAAAAAFAAMAAAACAAAAAAAGAAMAAAACAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAFAAAAAAAJAAMAAAAFAAAAAAAKAAMAAAAFAAAAAAALAAMAAAAFAAAAAAAMAAMAAAAFAAAAAAANAAMAAAAFAAAAAAAOAAIAAAAEAAAAAAAPAAIAAAACAAAAAAAQAAIAAAACAAAAAAARAAIAAAACAAAAAAASAAIAAAACAAAAAAATAAIAAAACAAAAAAAUAAIAAAACAAAAAAAVAAIAAAACAAAAAAAWAAIAAAACAAAAAAAXAAIAAAACAAAAAAAYAAIAAAACAAAAAAAZAAIAAAACAAAAAAAaAAIAAAACAAAAAAAbAAIAAAACAAAAAAAcAAIAAAACAAAAAAAdAAIAAAACAAAAAAAeAAIAAAACAAAAAAAfAAIAAAACAAAAAAAgAAIAAAACAAAAAAAhAAIAAAACAAAAAAAiAAIAAAACAAAAAAAjAAIAAAADAAAAAAANAAIAAAAFAAAAAAAIAAAAAAACAAAAAAAJAAAAAAACAAAAAAAKAAAAAAACAAAAAAALAAAAAAACAAAAAAAMAAAAAAACAAAAAAANAAAAAAADAAAAAAAOAAEAAAADAAAAAAAHAAAAAAABAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAFAAAAAAAIAAEAAAAFAAAAAAAJAAEAAAAFAAAAAAAKAAEAAAAFAAAAAAALAAEAAAAFAAAAAAAMAAEAAAAFAAAAAAANAAEAAAAEAAAAAAAIAAIAAAAFAAAAAAAJAAIAAAAFAAAAAAAKAAIAAAAFAAAAAAALAAIAAAAFAAAAAAAMAAIAAAAFAAAAAAAsAPn/AAAFAAAAAAAtAPn/AAAFAAAAAAAuAPn/AAAEAAAAAAArAPj/AAABAAAAAAArAPn/AAAAAAAAAAAsAPj/AAACAAAAAAAtAPj/AAACAAAAAAAuAPj/AAADAAAAAAAnAO7/AAABAAAAAAAnAO//AAAAAAAAAAAoAO7/AAACAAAAAAAoAO//AAAFAAAAAAApAO7/AAACAAAAAAApAO//AAAFAAAAAAAqAO7/AAADAAAAAAAqAO//AAAEAAAAAAA7APL/AAABAAAAAAA8APL/AAACAAAAAAA9APL/AAADAAAAAAA9APP/AAAEAAAAAAA7APP/AAAAAAAAAAA7APT/AAAFAAAAAAA8APT/AAAGAAAAAAA9APT/AAAHAAAAAAA7APX/AAAFAAAAAAA8APX/AAAGAAAAAAA9APX/AAAHAAAAAAA7APb/AAAFAAAAAAA8APb/AAAGAAAAAAA9APb/AAAHAAAAAAA7APf/AAAFAAAAAAA8APf/AAAGAAAAAAA9APf/AAAEAAAAAAA8APP/AAAGAAAAAAA+APf/AAACAAAAAAA/APf/AAACAAAAAABAAPf/AAACAAAAAABBAPf/AAACAAAAAABCAPf/AAACAAAAAABDAPf/AAACAAAAAABEAPf/AAACAAAAAABFAPf/AAACAAAAAABGAPf/AAACAAAAAABHAPf/AAACAAAAAABIAPf/AAACAAAAAABJAPf/AAACAAAAAABKAPf/AAACAAAAAABLAPf/AAACAAAAAABMAPf/AAACAAAAAABNAPf/AAACAAAAAABOAPf/AAAAAAAAAABPAPf/AAAEAAAAAABQAPf/AAACAAAAAABRAPf/AAACAAAAAABSAPf/AAACAAAAAABTAPf/AAACAAAAAABUAPf/AAACAAAAAABVAPf/AAACAAAAAABWAPf/AAACAAAAAABXAPf/AAACAAAAAABYAPf/AAACAAAAAABZAPf/AAACAAAAAABaAPf/AAACAAAAAABbAPf/AAACAAAAAABOAPP/AAABAAAAAABOAPT/AAAAAAAAAABOAPX/AAAGAAAAAABOAPb/AAAGAAAAAABPAPP/AAADAAAAAABPAPT/AAAEAAAAAABPAPX/AAAGAAAAAABPAPb/AAAGAAAAAABcAPf/AAAAAAAAAABcAPT/AAAAAAAAAABcAPX/AAAFAAAAAABcAPb/AAAFAAAAAABcAPP/AAABAAAAAABdAPP/AAADAAAAAABdAPT/AAAEAAAAAABdAPX/AAAFAAAAAABdAPb/AAAFAAAAAABdAPf/AAAFAAAAAAA=")
+tile_set = ExtResource("5_l4s0f")
